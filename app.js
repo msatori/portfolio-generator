@@ -1,13 +1,27 @@
-const fs = require('fs');
-const generatePage = require('./src/page-template');
-const profileDataArgs = process.argv.slice(2);
-// console.log(profileDataArgs);
-const [name, github] = profileDataArgs;
 
+//call inquirer 
+const inquirer = require('inquirer');
 
+inquirer
+ .prompt([
+     {
+         type: 'input',
+         name: 'name',
+         message: 'What is your Name?'
+     }
+ ])
+ .then(answers => console.log(answers));
+//call filesaver
+// const fs = require('fs');
+// //call the generate page module 
+// const generatePage = require('./src/page-template');
+// //this is a constant for creating an html page
+// const pageHTML = generatePage(name, github)
 
-fs.writeFile('./index.html', generatePage(name, github), err => {
-    if(err) throw new Error(err);
-
-    console.log('Portfolio Complete! Check out index.html to see the ouput!');
-})
+// //this creates the index.html for the webpage
+// fs.writeFile('./index.html', pageHTML, err => {
+//     //add error handling
+//     if(err) throw (err);
+//     //if page generation is successful
+//     console.log('Portfolio Complete! Check out index.html to see the ouput!');
+// });
